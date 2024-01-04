@@ -6,13 +6,14 @@ import characters from './routes/CharacterRoutes.js'
 const app = express()
 dotenv.config()
 
+app.set('view engine', 'ejs')
 app.use(express.static('public'))
 app.use(router);
 
 router.use('/characters', characters)
 
 app.get('/', (req, res) => {
-	res.send('Hello World')
+	res.render('index', { title: 'Home' })
 })
 
 app.listen(process.env.PORT, () => {
